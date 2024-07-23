@@ -3,6 +3,24 @@ let computerScore = 0;
 
 const choices = ["rock", "paper", "scissors"];
 
+// containers
+const pregameContainer = document.getElementById("pre-game");
+const gameContainer = document.getElementById("game");
+const postgameContainer = document.getElementById("post-game");
+
+// buttons
+const startButton = document.getElementById("start-game-button");
+const rockButton = document.getElementById("rock-button");
+const paperButton = document.getElementById("paper-button");
+const scissorsButton = document.getElementById("scissors-button");
+const restartButton = document.getElementById("restart-game-button");
+
+// dynamic headings
+const roundOutcomeHeading = document.getElementById("round-outcome-heading");
+const humanScoreHeading = document.getElementById("human-score-heading");
+const computerScoreHeading = document.getElementById("computer-score-heading");
+const postGameHeading = document.getElementById("post-game-heading");
+
 const getComputerChoice = () => {
   const randomChoice = Math.floor(Math.random() * choices.length);
   return choices[randomChoice];
@@ -46,11 +64,7 @@ const determineWinner = (computerChoice, humanChoice) => {
   }
 };
 
-const playRound = () => {
-  const humanChoice = getHumanChoice();
-  if (!humanChoice) {
-    return;
-  }
+const playRound = (humanChoice) => {
   const computerChoice = getComputerChoice();
   const winner = determineWinner(computerChoice, humanChoice);
   let message = "It's a draw";
@@ -62,7 +76,9 @@ const playRound = () => {
     message = "You lose the round";
     computerScore += 1;
   }
-  alert(`Computer chose ${computerChoice}. ${message}`);
+  humanScoreHeading.textContent = `Your score: ${humanScore}`;
+  computerScoreHeading.textContent = `Computer score: ${computerScore}`;
+  roundOutcomeHeading.textContent = `Computer chose ${computerChoice}. ${message}`;
 };
 
 const playGame = () => {
@@ -80,20 +96,13 @@ const playGame = () => {
   }
 };
 
-// containers
-const pregameContainer = document.getElementById("pre-game");
-const gameContainer = document.getElementById("game");
-const postgameContainer = document.getElementById("post-game");
+const startGame = () => {
+  pregameContainer.classList.add("hidden");
+  gameContainer.classList.remove("hidden");
+  humanScore = 0;
+  computerScore = 0;
+};
 
-// buttons
-const startButton = document.getElementById("start-game-button");
-const rockButton = document.getElementById("rock-button");
-const paperButton = document.getElementById("paper-button");
-const scissorsButton = document.getElementById("scissors-button");
-const restartButton = document.getElementById("restart-game-button");
-
-// dynamic headings
-const roundOutcomeHeading = document.getElementById("round-outcome-heading");
-const humanScoreHeading = document.getElementById("human-score-heading");
-const computerScoreHeading = document.getElementById("computer-score-heading");
-const postGameHeading = document.getElementById("post-game-heading");
+startButton.addEventListener("click", startGame);
+restartButton.addEventListener("click", startGame);
+rockButton.addEventListener("click", () => playRound("rock"));
