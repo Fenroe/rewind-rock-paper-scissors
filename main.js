@@ -9,7 +9,9 @@ const getComputerChoice = () => {
 };
 
 const getHumanChoice = () => {
-  const humanChoice = prompt("What is your choice?").toLowerCase();
+  const humanChoice = prompt(
+    `Current score: you ${humanScore} - ${computerScore} computer. What is your choice?`
+  ).toLowerCase();
   if (!choices.includes(humanChoice)) {
     return alert("You must choice rock, paper or scissors");
   } else {
