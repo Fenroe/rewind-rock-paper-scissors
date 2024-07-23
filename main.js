@@ -79,3 +79,21 @@ const playGame = () => {
     }
   }
 };
+
+// containers
+const pregameContainer = document.getElementById("pre-game");
+const gameContainer = document.getElementById("game");
+const postgameContainer = document.getElementById("post-game");
+
+// buttons
+const startButton = document.getElementById("start-game-button");
+const rockButton = document.getElementById("rock-button");
+const paperButton = document.getElementById("paper-button");
+const scissorsButton = document.getElementById("scissors-button");
+const restartButton = document.getElementById("restart-game-button");
+
+// dynamic headings
+const roundOutcomeHeading = document.getElementById("round-outcome-heading");
+const humanScoreHeading = document.getElementById("human-score-heading");
+const computerScoreHeading = document.getElementById("computer-score-heading");
+const postGameHeading = document.getElementById("post-game-heading");
