@@ -23,23 +23,59 @@ const determineWinner = (computerChoice, humanChoice) => {
   }
   if (computerChoice === "rock") {
     if (humanChoice === "paper") {
-      return "player";
+      return "human";
     } else {
       return "computer";
     }
   }
   if (computerChoice === "paper") {
     if (humanChoice === "scissors") {
-      return "player";
+      return "human";
     } else {
       return "computer";
     }
   }
   if (computerChoice === "scissors") {
     if (humanChoice === "rock") {
-      return "player";
+      return "human";
     } else {
       return "computer";
     }
   }
 };
+
+const playRound = () => {
+  const humanChoice = getHumanChoice();
+  if (!humanChoice) {
+    return;
+  }
+  const computerChoice = getComputerChoice();
+  const winner = determineWinner(computerChoice, humanChoice);
+  let message = "It's a draw";
+  if (winner === "human") {
+    message = "You win the round";
+    humanScore += 1;
+  }
+  if (winner === "computer") {
+    message = "You lose the round";
+    computerScore += 1;
+  }
+  alert(`Computer chose ${computerChoice}. ${message}`);
+};
+
+const playGame = () => {
+  let winnerFound = false;
+  while (!winnerFound) {
+    playRound();
+    if (computerScore === 5) {
+      alert("Computer wins the game");
+      winnerFound = true;
+    }
+    if (humanScore === 5) {
+      alert("You win the game");
+      winnerFound = true;
+    }
+  }
+};
+
+playGame();
