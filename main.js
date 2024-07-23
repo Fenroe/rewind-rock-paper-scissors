@@ -16,3 +16,30 @@ const getHumanChoice = () => {
     return humanChoice;
   }
 };
+
+const determineWinner = (computerChoice, humanChoice) => {
+  if (computerChoice === humanChoice) {
+    return "draw";
+  }
+  if (computerChoice === "rock") {
+    if (humanChoice === "paper") {
+      return "player";
+    } else {
+      return "computer";
+    }
+  }
+  if (computerChoice === "paper") {
+    if (humanChoice === "scissors") {
+      return "player";
+    } else {
+      return "computer";
+    }
+  }
+  if (computerChoice === "scissors") {
+    if (humanChoice === "rock") {
+      return "player";
+    } else {
+      return "computer";
+    }
+  }
+};
